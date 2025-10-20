@@ -1,0 +1,226 @@
+/* --- Base & Typography --- */
+html, body { /* Apply height to both HTML and body */
+    height: 100%;
+    margin: 0;
+}
+body.dynamic-background-body { /* Target the class added to body */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    
+    /* --- NEW DYNAMIC BACKGROUND STYLES --- */
+    background-image: url("{% static 'img/background.jpg' %}"); /* <--- YOUR IMAGE HERE */
+    background-size: cover; /* Cover the entire viewport */
+    background-repeat: no-repeat;
+    background-position: center center; /* Initial position */
+    background-attachment: fixed; /* Keeps background fixed when scrolling */
+    
+    /* We'll remove the color transition here and let JS handle it dynamically if desired */
+    transition: none; /* Let GSAP handle transitions for background-position/color */
+    /* --- END NEW DYNAMIC BACKGROUND STYLES --- */
+}
+
+page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    /* Ensure content is readable over background */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white container */
+    min-height: calc(100vh - 40px); /* Adjust to fill viewport minus padding */
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); /* Optional: blur background slightly behind container */
+}
+
+/* Fix for Barba.js to prevent content jumping */
+[data-barba="container"] {
+    position: relative;
+    width: 100%;
+}
+
+h1, h4 {
+    margin: 0 0 10px 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* --- Navigation Bar --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.nav-links a {
+    margin-left: 20px;
+    transition: color 0.2s;
+}
+.nav-links a:hover {
+    color: #0056b3;
+}
+
+/* --- Header & Search --- */
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.page-header p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: -10px;
+}
+.search-form {
+    display: flex;
+    max-width: 500px;
+    margin: 20px auto 0 auto;
+}
+.search-form input {
+    flex-grow: 1;
+    font-size: 1rem;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+}
+.search-form button {
+    font-size: 1rem;
+    padding: 0 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.search-form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* --- Card Grid --- */
+.card-grid {
+    display: grid;
+    /* This makes the grid responsive */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    margin-bottom: 10px;
+}
+.card-meta-subject {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #007bff;
+    background-color: #eefbff;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.4;
+}
+.card-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+.card-meta span {
+    margin-right: 15px;
+}
+.card-button {
+    margin-top: auto; /* Pushes button to the bottom */
+    display: block;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+.card-button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* --- Form Container --- */
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+}
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group input[type="file"] {
+    width: 100%;
+    box-sizing: border-box; /* Important for 100% width */
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.form-group input[type="file"] {
+    padding: 8px;
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group {
+    flex: 1;
+}
+.form-container .card-button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}

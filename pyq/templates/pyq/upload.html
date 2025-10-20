@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-content" data-barba-namespace="upload" data-page-color="#eefbff">
+
+    <div class="form-container">
+        <h1>Upload a New PYQ</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">Title</label>
+                {{ form.title }}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.subject.id_for_label }}">Subject</label>
+                {{ form.subject }}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.year.id_for_label }}">Year</label>
+                    {{ form.year }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.semester.id_for_label }}">Semester</label>
+                    {{ form.semester }}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.file.id_for_label }}">PDF File</label>
+                {{ form.file }}
+            </div>
+            
+            <button type="submit" class="card-button">Upload Now</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

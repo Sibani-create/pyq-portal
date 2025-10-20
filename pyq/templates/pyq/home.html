@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-content" data-barba-namespace="home" data-page-color="#f8f9fa">
+
+    <header class="page-header">
+        <h1>PYQ Portal</h1>
+        <p>Find all your previous year questions in one place.</p>
+    
+        <form method="get" class="search-form">
+          <input type="text" name="q" placeholder="Search by subject or title" value="{{ q }}">
+          <button type="submit">Search</button>
+        </form>
+    </header>
+    
+    <div class="card-grid">
+      {% for p in pyqs %}
+        <div class="card">
+            <div class="card-header">
+                <span class="card-meta-subject">{{ p.subject }}</span>
+            </div>
+            <h4 class="card-title">{{ p.title }}</h4>
+            <div class="card-meta">
+                <span>Year: <strong>{{ p.year }}</strong></span>
+                <span>Sem: <strong>{{ p.semester|default:'N/A' }}</strong></span>
+            </div>
+            <a href="{{ p.file.url }}" class="card-button" target="_blank">Download PDF</a>
+        </div>
+      {% empty %}
+        <p>No PYQs found. Be the first to upload!</p>
+      {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

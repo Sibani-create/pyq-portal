@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-l%vdm7hc2p8p5*!)9^$y*q5tje&10g^eem8%$69%8=u%u6we8_')
 
 # Read DEBUG from environment variable. Defaults to 'True' for local dev.
-# Will be 'False' on Render if you set the env var to 'False'.
+# This line is CORRECT. DO NOT CHANGE IT.
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Read ALLOWED_HOSTS from environment variable.
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Correctly pointing to your new 'templates' folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,5 +109,22 @@ STATIC_URL = '/static/'
 # This is where collectstatic will gather all static files
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# This correctly points to your new 'static' folder for JS/CSS
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
 # Whitenoise storage (Step 5)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# --- Media files (User Uploads) (Step 2) ---
+
+MEDIA_URL = '/media/'
+# This is where user-uploaded files will be stored locally
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# --- Default primary key field type ---
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
